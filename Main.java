@@ -28,7 +28,6 @@ public class Main {
 				e.printStackTrace();
 			}
 	    }
-		System.out.println("Terminata esecuzione (" + numClients + " clienti)");
 	}
 
 }

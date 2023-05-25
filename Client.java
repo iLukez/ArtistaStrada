@@ -16,6 +16,7 @@ public class Client extends Thread {
 	public void run() {
 			try {
 				if (Main.semaphore.tryAcquire(3, TimeUnit.SECONDS)) {
+					System.out.println("Cliente [" + id + "] si è seduto e sta aspettando");
 					Main.mutex.acquire();
 					System.out.println("Ritratto [" + id + "] iniziato");
 					try {
