@@ -1,34 +1,39 @@
 package donadel;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class Client extends Thread {
 	public int id;
 	public int maxWait;
-	public Semaphore mutex;
 	
-	public Client(int id, Semaphore mutex, int maxWait) {
+	public Client(int id, int maxWait) {
 		this.id = id;
 		this.maxWait = maxWait;
-		this.mutex = mutex;
 	}
 	
 	@Override
 	public void run() {
-		try {
-			mutex.acquire();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Il cliente " + id + " si siede ed inizia a farsi dipingere il ritratto");
-		try {
-			Thread.sleep(3000, 10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Il cliente " + id + " ha ricevuto il suo ritratto completato");
-		mutex.release();
+			try {
+				if (Main.semaphore.tryAcquire(3, TimeUnit.SECONDS)) {
+					Main.mutex.acquire();
+					System.out.println("Ritratto [" + id + "] iniziato");
+					try {
+						Thread.sleep(2000, 10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println("Ritratto [" + id + "] finito");
+					Main.mutex.release();
+					Main.semaphore.release();
+				}
+				else {
+					System.out.println("Il cliente " + id + " ha aspettato troppo e se ne è andato");
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }
