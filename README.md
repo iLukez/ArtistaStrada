@@ -1,7 +1,7 @@
 
 # Simulazione di un artista da strada per caricature e ritratti a carboncino
 
-Questo progetto è una simulazione di un artista da strada che esegue caricature e ritratti a carboncino. Le persone interessate a un ritratto si siedono in una delle quattro sedie disponibili e attendono il loro turno per il ritratto. Le persone intorno arrivano continuamente e aspettano che una delle quattro sedie si liberi per mettersi in attesa del ritratto. Le persone che aspettano troppo a lungo per una sedia libera rinunciano a farsi fare il ritratto e vanno via. Il meccanismo di sincronizzazione tra i processi viene implementato utilizzando i semafori (precisamente, un semaforo a conteggio per le sedie e un mutex per il ritratto che sta venendo realizzato).
+Questo progetto è una simulazione di un artista da strada che esegue caricature e ritratti a carboncino. Le persone interessate a un ritratto si siedono in una delle quattro sedie disponibili e attendono il loro turno per il ritratto. Le persone intorno arrivano continuamente e aspettano che una delle quattro sedie si liberi per mettersi in attesa del ritratto. Le persone che aspettano troppo a lungo per una sedia libera rinunciano a farsi fare il ritratto e vanno via. Il meccanismo di sincronizzazione tra i processi viene implementato utilizzando i **semafori** (precisamente, un semaforo a conteggio per le sedie e un mutex per il ritratto che sta venendo realizzato).
 
 ### Descrizione dell'algoritmo
 
@@ -11,8 +11,8 @@ Questo progetto è una simulazione di un artista da strada che esegue caricature
 * Vengono inizializzati i seguenti parametri:
     * `minIntervalBetweenClients`: intervallo di tempo minimo tra l'arrivo di un cliente e il successivo.
     * `maxIntervalBetweenClients`: intervallo di tempo massimo tra l'arrivo di un cliente e il successivo.
-* Viene creato un semaforo chiamato `semaphore` con valore iniziale 4, che rappresenta le quattro sedie disponibili.
-* Viene creato un semaforo chiamato `mutex` con valore iniziale 1, che viene utilizzato per garantire che l'artista di strada esegua un ritratto alla volta.
+* Viene creato un semaforo a conteggio chiamato `semaphore` con valore iniziale **4**, che rappresenta le quattro sedie disponibili.
+* Viene creato un semaforo a mutua esclusione chiamato `mutex` con valore iniziale **1**, che viene utilizzato per garantire che l'artista di strada esegua un ritratto alla volta.
 * Viene avviato un ciclo in cui vengono creati i clienti in modo casuale:
     * Ogni cliente ha un identificatore (`id`) generato casualmente utile agli output del programma.
 
@@ -42,4 +42,4 @@ Il programma termina quando tutti i clienti sono stati serviti o hanno rinunciat
 
 #### Sincronizzazione
 
-Come già spiegato, la sincronizzazione è stata eseguita mediante un semaforo a conteggio e uno a mutua esclusione. In questo modo si assicura che la sezione critica del programma non entri mai in una situazione di stallo (deadlock) o starvation.
+Come già spiegato, la sincronizzazione è stata eseguita mediante un semaforo a conteggio e uno a mutua esclusione. In questo modo si assicura che la sezione critica del programma non entri mai in una situazione di **stallo (deadlock)** o **starvation**.
