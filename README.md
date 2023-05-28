@@ -39,3 +39,7 @@ Questo progetto è una simulazione di un artista da strada che esegue caricature
    * > *"Il cliente \<id> ha aspettato troppo e se ne è andato"*
 
 Il programma termina quando tutti i clienti sono stati serviti o hanno rinunciato.
+
+#### Sincronizzazione
+
+Come già spiegato, la sincronizzazione è stata eseguita mediante un semaforo a conteggio e uno a mutua esclusione. In questo modo si assicura che la sezione critica del programma non entri mai in una situazione di stallo (deadlock) o starvation.
