@@ -7,9 +7,8 @@ public class Client extends Thread {
 	public int id;
 	public int maxWait;
 	
-	public Client(int id, int maxWait) {
+	public Client(int id) {
 		this.id = id;
-		this.maxWait = maxWait;
 	}
 	
 	@Override
@@ -20,7 +19,7 @@ public class Client extends Thread {
 					Main.mutex.acquire();
 					System.out.println("Ritratto [" + id + "] iniziato");
 					try {
-						Thread.sleep(2000, 10000);
+						Thread.sleep(5000, 15000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -30,7 +29,7 @@ public class Client extends Thread {
 					Main.semaphore.release();
 				}
 				else {
-					System.out.println("Il cliente " + id + " ha aspettato troppo e se ne è andato");
+					System.out.println("Il cliente [" + id + "] ha aspettato troppo e se ne è andato");
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
